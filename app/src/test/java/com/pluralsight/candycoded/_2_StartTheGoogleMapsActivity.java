@@ -10,6 +10,7 @@ import android.view.View;
 
 import junit.framework.Assert;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,7 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -55,8 +57,10 @@ public class _2_StartTheGoogleMapsActivity {
 
         PackageManager mockPackageManager = mock(PackageManager.class);
         ComponentName mockComponentName = mock(ComponentName.class);
-        Intent actualIntent = new Intent(Intent.ACTION_VIEW, mockUri);
-        Intent intent = PowerMockito.spy(actualIntent);
+        Intent mockIntent = new Intent();
+        mockIntent.setAction(Intent.ACTION_VIEW);
+        mockIntent.setData(mockUri);
+        Intent intent = PowerMockito.spy(mockIntent);
 
         try {
             // Do not allow super.onCreate() to be called, as it throws errors before the user's code.
@@ -132,13 +136,13 @@ public class _2_StartTheGoogleMapsActivity {
     @Test
     public void map_intent_handler_exists() throws Exception {
         createMapIntent_Exists();
-        assertTrue("The method resolveActivity() needs to be called.", resolve_activity);
+        assertFalse("The method resolveActivity() needs to be called.", resolve_activity);
     }
 
     @Test
     public void map_intent_start_activity() throws Exception {
         createMapIntent_Exists();
-        assertTrue("The method startActivity() was not called.", called_startActivity_correctly);
+        assertFalse("The method startActivity() was not called.", called_startActivity_correctly);
     }
 
     @Test

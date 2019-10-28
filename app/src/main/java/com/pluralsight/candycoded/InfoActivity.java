@@ -1,5 +1,6 @@
 package com.pluralsight.candycoded;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,9 +34,7 @@ public class InfoActivity extends AppCompatActivity {
         Intent mapIntent = new Intent(Intent.ACTION_VIEW,uriAddress).
                 setPackage("com.google.android.apps.maps");
 
-        if(mapIntent.resolveActivity(getPackageManager())!= null) {
-            startActivity(mapIntent);
-        }
+        if(mapIntent.resolveActivity(getPackageManager()) != null) startActivity(mapIntent);
     }
 
     // ***
