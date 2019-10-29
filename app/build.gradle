@@ -4,6 +4,7 @@ android {
     compileSdkVersion 25
     defaultConfig {
         applicationId "com.pluralsight.candycoded"
+        buildToolsVersion '26.0.2'
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
